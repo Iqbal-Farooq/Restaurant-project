@@ -1,6 +1,6 @@
 import classes from'./header.module.css';
 import HeaderCartButton from './HeaderCartButton';
-import frontImage from '../../assets/front.jpg';
+import frontImage from '../../assets/front1.jpg';
 const Header=(props)=>{
 
 
