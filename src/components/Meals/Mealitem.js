@@ -6,7 +6,8 @@ const MealItem=(props)=>{
         <div className={classes.description}> {props.description}</div>
         <div className={classes.price}>{`Rs-${props.price} /p`} </div>
         
-        <div ><MealForm id={props.id}/></div>
+        <div ><MealForm id={props.id} item={props}/></div>
+        {/* {console.log(' From Mealitem',props)} */}
     </li>
 
 }
