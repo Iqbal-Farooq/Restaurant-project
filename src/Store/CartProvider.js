@@ -31,12 +31,43 @@ const cartReducer=(state,action)=>{
             updatedItems=state.items.concat(action.item)
             
         }
+       
         
           return {
             items:updatedItems,
             totalAmount:updatedAmount,
           }
 }
+
+ if(action.type==="REMOVE"){
+     
+ const existingCartIndex=state.items.findIndex(item=>item.id===action.id);
+  const existingItem=state.items[existingCartIndex];
+  
+    const updatedTotalamount=state.totalAmount-existingItem.price;
+   
+   
+    let updatedItems;
+   
+
+    if(existingItem.quantity<2){
+        updatedItems=state.items.filter((item)=>item.id!==action.id)
+        console.log('INSIDE IF STATEMENT');
+    }
+    else{
+       const updatedItem={...existingItem,quantity:existingItem.quantity-1}
+        updatedItems=[...state.items];
+        updatedItems[existingCartIndex]=updatedItem;
+          console.log('INSIDE ELSE STATEMENT');
+
+    }
+    return{
+        items:updatedItems,
+        totalAmount:updatedTotalamount,
+    }
+
+
+ }
     }
   
 

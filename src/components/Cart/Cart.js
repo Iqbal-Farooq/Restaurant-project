@@ -3,18 +3,16 @@ import Modal from '../Ui/Modal';
 import CartContext from '../../Store/Cart-context';
 import { useContext } from 'react';
 import CartItem from './CartItem';
+
+
 const Cart=props=>{
     const cartCntx=useContext(CartContext)
-    // let price=0
-
-    // const cartitems=(<ul className={classes['cart-items']}>
-    // {cartCntx.items.map(item=><li>{`Order-Name ${item.name}`}  {`Rs-${item.price*item.quantity}`} {`order-quantity ${item.quantity}`}</li>)}
-    // </ul>);
-    const CartItemRemovehandler=id=>{};
-    const CartItemAddHandler=item=>{};
+    
+    const CartItemRemovehandler=id=>{cartCntx.removeItem(id)};
+    const CartItemAddHandler=item=>{cartCntx.addItem(item)};
 
     const cartitems=(<ul className={classes['cart-items']}>
-    {cartCntx.items.map((item)=><CartItem key={item.id} name={item.name} quantity={Number(item.quantity)} price={item.price} 
+    {cartCntx.items.map((item)=><CartItem key={item.id} id={item.id} name={item.name} quantity={Number(item.quantity)} price={item.price} 
     onRemove={CartItemRemovehandler.bind(null,item.id)} onAdd={ CartItemAddHandler.bind(null,item)} />)}</ul>);
 
 
@@ -29,6 +27,7 @@ const Cart=props=>{
     return(
     <Modal onClose={props.onClose}>
         {cartitems}
+        
         <div className={classes.total}>
         <span>Total Amount</span>
         
